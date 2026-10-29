@@ -1,0 +1,25 @@
+[paths]
+goal = "goal.md"
+architecture = "architecture.md"
+seed = "seed.jsonl"
+output = "../../runs/arithmetic"
+
+[pipeline]
+n = 12
+k = 2
+steps = 3
+batch_size = 4
+validation_size = 6
+delta = 0.05
+seed = 42
+
+[teacher]
+backend = "demo"
+batch_size = 8
+
+[student]
+backend = "numpy"
+hidden_size = 24
+learning_rate = 0.08
+max_length = 64
+max_new_tokens = 2

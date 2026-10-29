@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "self-evolving-dataset"
+version = "0.1.0"
+description = "Model-aware curriculum with Codex subscription-backed semantic operations"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+demo = ["numpy>=1.24,<3"]
+hf = ["torch>=2.2", "transformers>=4.45,<5"]
+
+[project.scripts]
+evolving-dataset = "evolving_dataset.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

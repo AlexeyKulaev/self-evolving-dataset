@@ -1,0 +1,38 @@
+[paths]
+goal = "goal.md"
+architecture = "architecture.md"
+seed = "data/seed.jsonl"
+output = "runs/experiment"
+
+[format]
+input_fields = ["question"] # use ["question", "table"] when both are present
+answer_field = "answer"
+
+[pipeline]
+n = 10000
+k = 3
+steps = 100
+batch_size = 8
+validation_size = 100
+seed = 42
+delta_floor = 0.01
+# delta = 0.03 # optional fixed threshold instead of paired standard error
+
+[teacher]
+backend = "codex"
+executable = "codex" # or ".tools/codex/node_modules/.bin/codex" for the isolated install
+model = "gpt-6.1-sol"
+reasoning_effort = "xhigh"
+service_tier = "fast"
+batch_size = 16
+timeout = 600
+retries = 2
+audit_generated = true
+
+[student]
+backend = "hf"
+model = "" # local/Hugging Face checkpoint matching architecture.md
+device = "cpu"
+learning_rate = 0.00001
+max_length = 1024
+max_new_tokens = 128

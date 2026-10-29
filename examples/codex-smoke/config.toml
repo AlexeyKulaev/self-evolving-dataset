@@ -1,0 +1,31 @@
+[paths]
+goal = "goal.md"
+architecture = "architecture.md"
+seed = "seed.jsonl"
+output = "../../runs/codex-smoke"
+
+[pipeline]
+n = 10
+k = 1
+steps = 1
+batch_size = 2
+validation_size = 2
+delta = 0.05
+seed = 42
+
+[teacher]
+backend = "codex"
+executable = "../../.tools/codex/node_modules/.bin/codex"
+model = "gpt-6.1-sol"
+reasoning_effort = "xhigh"
+service_tier = "fast"
+batch_size = 20
+timeout = 120
+retries = 2
+
+[student]
+backend = "numpy"
+hidden_size = 8
+learning_rate = 0.08
+max_length = 64
+max_new_tokens = 2
